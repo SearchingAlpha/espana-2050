@@ -29,7 +29,7 @@ Para actualizar con datos nuevos, edita los `datos_*.json` y ejecuta:
 
 ```sh
 npm run data
-npm run build
+git commit -am "Actualiza datos" && git push
 ```
 
 ## Desarrollo
@@ -39,10 +39,6 @@ npm install
 npm run dev
 ```
 
-Para publicar en GitHub Pages (rama `gh-pages`):
-
-```sh
-npm run deploy
-```
+Cada push a `main` se publica automáticamente en GitHub Pages (GitHub Actions).
 
 ¿Has visto un error o un dato más reciente? Abre una [issue](https://github.com/SearchingAlpha/espana-2050/issues).
