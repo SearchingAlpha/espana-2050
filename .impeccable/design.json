@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-04T22:30:00Z",
+  "title": "Design System: Senda España 2050",
+  "extensions": {
+    "colorMeta": {
+      "blue": { "role": "primary", "displayName": "Report Steel Blue", "canonical": "#4a8aa9", "dark": "#3f7a98", "tonalRamp": ["#00152e", "#002e49", "#004965", "#236583", "#4989a8", "#6eaece", "#93d5f6", "#b7f9ff"] },
+      "blue-deep": { "role": "primary", "displayName": "Lámina Deep Blue", "canonical": "#23617f", "tonalRamp": ["#00142e", "#002e49", "#004965", "#276583", "#4c88a8", "#71adce", "#96d4f6", "#baf8ff"] },
+      "blue-ink": { "role": "primary", "displayName": "Table Ink Blue", "canonical": "#1f6f93", "dark": "#8cc8e6", "tonalRamp": ["#001433", "#002e4e", "#00496b", "#116689", "#3e8aaf", "#64afd6", "#8ad6fe", "#aefaff"] },
+      "cyan": { "role": "secondary", "displayName": "Maze Cyan", "canonical": "#65b7d9", "tonalRamp": ["#001531", "#002f4c", "#004b69", "#006786", "#378bac", "#5eb1d2", "#85d7fa", "#a9fcff"] },
+      "yellow": { "role": "tertiary", "displayName": "Signal Yellow", "canonical": "#ffd300", "tonalRamp": ["#2b0100", "#461c00", "#633900", "#805600", "#a57a00", "#cb9f00", "#f2c600", "#ffed8d"] },
+      "graphite": { "role": "neutral", "displayName": "Report Graphite", "canonical": "#3c3c3b", "tonalRamp": ["#121211", "#292928", "#424241", "#5e5e5c", "#80807f", "#a5a5a3", "#cacac9", "#eeeeed"] },
+      "paper": { "role": "neutral", "displayName": "Sheet White", "canonical": "#ffffff", "dark": "#3c3c3b", "tonalRamp": ["#121212", "#292929", "#424242", "#5d5d5d", "#808080", "#a4a4a4", "#cacaca", "#eeeeee"] },
+      "page": { "role": "neutral", "displayName": "Pale Page", "canonical": "#f4f8fb", "dark": "#323231", "tonalRamp": ["#0f1214", "#26292b", "#404345", "#5b5e61", "#7d8183", "#a1a5a8", "#c7cbce", "#ebeff2"] },
+      "sky": { "role": "neutral", "displayName": "Table Sky", "canonical": "#e3eef5", "dark": "#474746", "tonalRamp": ["#0b1317", "#222a2f", "#3b4449", "#565f65", "#788288", "#9ca6ad", "#c2ccd3", "#e5f0f7"] },
+      "sky-line": { "role": "neutral", "displayName": "Sky Rule", "canonical": "#c4d9e6", "dark": "#5d5d5b", "tonalRamp": ["#04141c", "#1a2b35", "#334550", "#4e616c", "#70838f", "#94a8b4", "#b9cedb", "#ddf2ff"] },
+      "hair": { "role": "neutral", "displayName": "Hairline", "canonical": "#dbe5ec", "dark": "#4b4b49", "tonalRamp": ["#0c1317", "#222a2f", "#3c4449", "#565f65", "#798288", "#9da6ad", "#c2ccd3", "#e6f0f7"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1d2124", "dark": "#f3f3f0", "tonalRamp": ["#0e1215", "#25292d", "#3f4346", "#5a5e62", "#7c8185", "#a0a5a9", "#c6cbcf", "#eaeff4"] },
+      "ink-2": { "role": "neutral", "displayName": "Ink 2", "canonical": "#4b5459", "dark": "#d4d4ce", "tonalRamp": ["#0b1317", "#222a2f", "#3b4449", "#565f64", "#788287", "#9ca6ac", "#c2ccd2", "#e6f0f6"] },
+      "muted": { "role": "neutral", "displayName": "Muted", "canonical": "#6c767c", "dark": "#aaaaa3", "tonalRamp": ["#0b1317", "#222a2f", "#3b4449", "#565f65", "#788288", "#9ca6ad", "#c1ccd3", "#e5f0f7"] },
+      "on-blue": { "role": "neutral", "displayName": "On-Blue", "canonical": "#ffffff" },
+      "on-blue-2": { "role": "neutral", "displayName": "On-Blue 2", "canonical": "#e3f0f6" },
+      "s-enlinea": { "role": "status", "displayName": "Meta 2030 en línea", "canonical": "#26804a", "dark": "#3aa266", "tonalRamp": ["#001d00", "#003704", "#005320", "#0d703b", "#3e945d", "#65ba80", "#8be1a5", "#afffc8"] },
+      "s-senda": { "role": "status", "displayName": "Al ritmo previsto", "canonical": "#2f7ea3", "dark": "#4b9cc2", "tonalRamp": ["#001433", "#002e4f", "#00496c", "#0c668a", "#3c8aaf", "#63afd6", "#89d6fe", "#adfaff"] },
+      "s-lento": { "role": "status", "displayName": "Por debajo del ritmo", "canonical": "#e07b39", "dark": "#e8894a", "tonalRamp": ["#3b0000", "#5a0000", "#7a1c00", "#9b3c00", "#c36117", "#ec8645", "#ffac6c", "#ffd7a4"] },
+      "s-lento-ink": { "role": "status", "displayName": "Por debajo ink", "canonical": "#2b1d10" },
+      "s-retroceso": { "role": "status", "displayName": "Estancado o retroceso", "canonical": "#c43d36", "dark": "#e86058", "tonalRamp": ["#430000", "#650000", "#870000", "#aa211f", "#d44c43", "#fe7367", "#ff9a8b", "#ffcfc3"] },
+      "s-nodata": { "role": "status", "displayName": "Sin dato", "canonical": "#9aa3a8", "dark": "#77776f", "tonalRamp": ["#0c1316", "#232a2e", "#3c4448", "#575f64", "#798287", "#9da6ab", "#c3ccd1", "#e7f0f6"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The cover question only; emphasis by yellow color, never italic." },
+      "numeral": { "displayName": "Chapter Numeral", "purpose": "Giant cyan desafío number in each chapter panel; 88px on mobile." },
+      "headline": { "displayName": "Headline", "purpose": "Chapter titles and the método heading." },
+      "title": { "displayName": "Title", "purpose": "Map heading, ficha status heading, guide words, wordmark, formula (22-34px)." },
+      "figure": { "displayName": "Figure", "purpose": "Every headline number: row numerals, hoy values, ritmo years, ficha values (26-30px, tabular)." },
+      "body": { "displayName": "Body", "purpose": "Plex Light reading voice; 15-15.5px inside panels, 62-70ch." },
+      "body-strong": { "displayName": "Body Strong", "purpose": "Indicator names and inline emphasis." },
+      "label": { "displayName": "Label", "purpose": "Table head and chip text (13-14px/400 for chips)." },
+      "caption": { "displayName": "Caption", "purpose": "Year · source lines under figures, chart ticks, dt labels (11-12px)." }
+    },
+    "shadows": [
+      { "name": "guide-shelf", "value": "0 6px 16px -14px rgba(10, 40, 60, .5)", "purpose": "Sticky guide over scrolling content." },
+      { "name": "tooltip-lift", "value": "0 8px 20px -8px rgba(0,0,0,.4)", "purpose": "Map-cell tooltip." },
+      { "name": "cell-ring", "value": "inset 0 0 0 1.5px rgba(255,255,255,.75)", "purpose": "Inner white ring on map cells, separating them on the blue field." },
+      { "name": "senda-marker-outline", "value": "0 0 0 1.5px var(--graphite)", "purpose": "Graphite outline around the yellow senda marker in the progress track." }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(.16, 1, .3, 1)", "purpose": "All state transitions: cell lift (.25s), chevron rotation (.3s), chart draw (.9s)." },
+      { "name": "chart-draw", "value": "draw .9s var(--ease) both", "purpose": "Real trajectory draws in when a ficha opens." },
+      { "name": "chart-extend", "value": "fade .5s .7s ease-out both", "purpose": "Dotted extension fades in after the draw." },
+      { "name": "reduced-motion", "value": "none", "purpose": "Smooth scroll, chart animation and cell/chevron transitions are disabled under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "cover-stack", "value": "1020px" },
+      { "name": "mobile", "value": "860px" }
+    ],
+    "focus": { "value": "outline: 3px solid var(--yellow); outline-offset: 2px; border-radius: 2px", "purpose": "Global :focus-visible." },
+    "signature": [
+      { "name": "corner-bracket", "value": "26px L-bracket, 7px var(--blue) top and left strokes at top-left of white sheets" },
+      { "name": "cover-maze", "value": "public/laberinto.svg, isometric maze generated by scripts/maze.py (seed 2050), faces cyan/#3d7898/graphite, clipped polygon(0 0, 100% 0, 100% 58%, 0 100%)" },
+      { "name": "cover-senda", "value": "14px yellow bar, rotate(-3.5deg), 58% wide from left; 10px, -4deg, 112% wide under 1020px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Status filter on white: icon, label, count; pill with sky-line border; pressed fills sky.",
+      "html": "<div style=\"display:flex;gap:6px;flex-wrap:wrap\"><button class=\"ds-chip\" aria-pressed=\"false\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 20 20\"><circle cx=\"10\" cy=\"10\" r=\"10\" fill=\"#26804a\"/><path d=\"M5.6 10.4l3 3 5.8-6.4\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Meta 2030 en línea<span class=\"ds-n\">15</span></button><button class=\"ds-chip\" aria-pressed=\"true\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 20 20\"><circle cx=\"10\" cy=\"10\" r=\"10\" fill=\"#c43d36\"/><path d=\"M10 5.5v9M6.5 11l3.5 3.5 3.5-3.5\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Estancado o retroceso<span class=\"ds-n\">10</span></button></div>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--sky-line, #c4d9e6); background: var(--paper, #fff); color: var(--ink, #1d2124); border-radius: 999px; padding: 5px 12px 5px 6px; font: 400 14px/1.2 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; cursor: pointer; } .ds-chip .ds-n { font-weight: 600; font-variant-numeric: tabular-nums; } .ds-chip:hover { border-color: var(--blue, #4a8aa9); } .ds-chip[aria-pressed=\"true\"] { background: var(--sky, #e3eef5); border-color: var(--blue, #4a8aa9); font-weight: 500; } .ds-chip:focus-visible { outline: 3px solid var(--yellow, #ffd300); outline-offset: 2px; }"
+    },
+    {
+      "name": "Status Chip on Blue",
+      "kind": "chip",
+      "refersTo": "chip-on-blue",
+      "description": "Legend filter on the steel-blue cover; pressed inverts to white.",
+      "html": "<div class=\"ds-field\"><button class=\"ds-chip-blue\" aria-pressed=\"false\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 20 20\"><circle cx=\"10\" cy=\"10\" r=\"9.25\" fill=\"#2f7ea3\" stroke=\"#fff\" stroke-width=\"1.5\"/><path d=\"M6.5 13.5l7-7M8.2 6.5h5.3v5.3\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Al ritmo previsto<span class=\"ds-n\">12</span></button><button class=\"ds-chip-blue\" aria-pressed=\"true\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 20 20\"><circle cx=\"10\" cy=\"10\" r=\"9.25\" fill=\"#e07b39\" stroke=\"#fff\" stroke-width=\"1.5\"/><path d=\"M5.5 10h9M11 6.5l3.5 3.5-3.5 3.5\" fill=\"none\" stroke=\"#2b1d10\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Por debajo del ritmo<span class=\"ds-n\">13</span></button></div>",
+      "css": ".ds-field { background: var(--blue, #4a8aa9); padding: 20px; display: flex; gap: 8px; flex-wrap: wrap; } .ds-chip-blue { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.55); border-radius: 999px; padding: 5px 12px 5px 6px; font: 400 14px/1.2 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; cursor: pointer; } .ds-chip-blue .ds-n { font-weight: 600; font-variant-numeric: tabular-nums; } .ds-chip-blue:hover { border-color: #fff; } .ds-chip-blue[aria-pressed=\"true\"] { background: #fff; color: #1d2124; border-color: #fff; } .ds-chip-blue:focus-visible { outline: 3px solid var(--yellow, #ffd300); outline-offset: 2px; }"
+    },
+    {
+      "name": "Map Cells",
+      "kind": "custom",
+      "refersTo": "map-cell",
+      "description": "Numbered 30px status squares on the blue field; hover lifts, active gets the yellow ring.",
+      "html": "<div class=\"ds-mapa\"><span class=\"ds-d\">1</span><div class=\"ds-cells\"><button class=\"ds-cell\" style=\"background:#26804a\">1</button><button class=\"ds-cell\" style=\"background:#2f7ea3\">2</button><button class=\"ds-cell ds-active\" style=\"background:#e07b39;color:#2b1d10\">3</button><button class=\"ds-cell\" style=\"background:#c43d36\">4</button><button class=\"ds-cell\" style=\"background:#9aa3a8\">5</button></div></div>",
+      "css": ".ds-mapa { background: var(--blue, #4a8aa9); padding: 24px; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: center; } .ds-d { font: 400 24px/1 'Bebas Neue', 'Oswald', 'Arial Narrow', sans-serif; color: #fff; } .ds-cells { display: flex; gap: 5px; } .ds-cell { width: 30px; height: 30px; border: 0; border-radius: 3px; display: grid; place-items: center; font: 500 11.5px/1 'IBM Plex Sans', system-ui, sans-serif; color: #fff; cursor: pointer; position: relative; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.75); transition: transform .25s cubic-bezier(.16,1,.3,1); font-variant-numeric: tabular-nums; } .ds-cell:hover { transform: translateY(-2px); } .ds-cell:focus-visible { outline: 3px solid var(--yellow, #ffd300); outline-offset: 2px; } .ds-active::after { content: \"\"; position: absolute; inset: -6px; border: 2.5px solid var(--yellow, #ffd300); border-radius: 50%; }"
+    },
+    {
+      "name": "Indicator Row with Progress Track",
+      "kind": "card",
+      "refersTo": "indicator-row",
+      "description": "Cuadro head and one row: Bebas numeral and figures, Plex name with flag, progress track with yellow senda marker, status, ritmo.",
+      "html": "<div class=\"ds-cuadro\"><div class=\"ds-head\"><span></span><span>Indicador</span><span>Hoy</span><span>Progreso hacia 2030</span><span>A este ritmo</span></div><div class=\"ds-row\"><span class=\"ds-num\">36</span><span class=\"ds-name\">Pobreza energética<span class=\"ds-flag\">Dato aproximado</span></span><span class=\"ds-hoy\">15,9%<small>2025 · partía de 7,5</small></span><span class=\"ds-pista\"><span class=\"ds-rail\" style=\"left:40%;width:40%\"></span><span class=\"ds-bar\" style=\"left:0;width:40%;background:#c43d36\"></span><span class=\"ds-esp\" style=\"left:62%\"></span></span><span class=\"ds-ritmo ds-late\">No llega<small>la tendencia va en contra</small></span></div></div>",
+      "css": ".ds-cuadro { background: var(--paper, #fff); position: relative; font: 300 16px/1.55 'IBM Plex Sans', system-ui, sans-serif; color: var(--ink, #1d2124); } .ds-cuadro::before { content: \"\"; position: absolute; top: 0; left: 0; width: 26px; height: 26px; border-top: 7px solid var(--blue, #4a8aa9); border-left: 7px solid var(--blue, #4a8aa9); } .ds-head, .ds-row { display: grid; grid-template-columns: 46px 2fr 1fr 1.4fr 1fr; gap: 14px; align-items: center; padding-inline: 24px; } .ds-head { background: var(--sky, #e3eef5); color: var(--blue-ink, #1f6f93); font-size: 12.5px; font-weight: 500; padding-block: 10px; } .ds-row { padding-block: 15px; border-bottom: 1px solid var(--hair, #dbe5ec); cursor: pointer; } .ds-row:hover { background: rgba(227,238,245,.55); } .ds-num { font: 400 30px/1 'Bebas Neue', 'Oswald', sans-serif; color: var(--blue-ink, #1f6f93); } .ds-name { font-weight: 500; line-height: 1.3; } .ds-flag { display: inline-block; font-size: 11.5px; font-weight: 400; color: var(--ink-2, #4b5459); border: 1px solid var(--sky-line, #c4d9e6); border-radius: 2px; padding: 0 5px; margin-left: 6px; } .ds-hoy, .ds-ritmo { font: 400 30px/1 'Bebas Neue', 'Oswald', sans-serif; font-variant-numeric: tabular-nums; } .ds-ritmo { font-size: 26px; } .ds-hoy small, .ds-ritmo small { display: block; font: 300 12px/1.3 'IBM Plex Sans', system-ui, sans-serif; color: var(--muted, #6c767c); margin-top: 3px; } .ds-late { color: var(--s-retroceso, #c43d36); } .ds-pista { position: relative; height: 28px; } .ds-rail, .ds-bar { position: absolute; top: 11px; height: 6px; } .ds-rail { background: var(--sky, #e3eef5); } .ds-esp { position: absolute; top: 3px; width: 6px; height: 22px; margin-left: -3px; background: var(--yellow, #ffd300); box-shadow: 0 0 0 1.5px var(--graphite, #3c3c3b); }"
+    },
+    {
+      "name": "Chapter Panel",
+      "kind": "custom",
+      "refersTo": "chapter-panel",
+      "description": "Full-bleed steel blue with giant cyan Bebas numeral and Bebas title.",
+      "html": "<header class=\"ds-chapter\"><span class=\"ds-numeral\">7</span><div><h2 class=\"ds-ch-title\">Resolver las deficiencias del mercado de trabajo</h2><p class=\"ds-hl\">Avanza más: <b>Temporalidad</b>. Va peor: <b>Satisfacción laboral</b>.</p></div></header>",
+      "css": ".ds-chapter { background: var(--blue, #4a8aa9); color: #fff; display: grid; grid-template-columns: auto 1fr; gap: 4px 32px; align-items: end; padding: 40px 32px; } .ds-numeral { font: 400 140px/.78 'Bebas Neue', 'Oswald', sans-serif; color: var(--cyan, #65b7d9); } .ds-ch-title { font: 400 52px/.92 'Bebas Neue', 'Oswald', sans-serif; letter-spacing: .005em; margin: 0; text-transform: uppercase; } .ds-hl { margin: 10px 0 0; font: 300 15px/1.55 'IBM Plex Sans', system-ui, sans-serif; color: var(--on-blue-2, #e3f0f6); } .ds-hl b { color: #fff; font-weight: 500; }"
+    },
+    {
+      "name": "Ficha Figures",
+      "kind": "card",
+      "refersTo": "ficha",
+      "description": "Deep-blue lámina: yellow Bebas status heading, four Bebas figures on 22%-white rules, Plex Light text.",
+      "html": "<div class=\"ds-ficha\"><h3>Estancado o retroceso</h3><dl><div><dt>Punto de partida</dt><dd>7,5</dd></div><div><dt>Hoy (2025)</dt><dd>15,9</dd></div><div><dt>Meta 2030</dt><dd>6</dd></div><div><dt>Meta 2050</dt><dd>0</dd></div></dl><p>En vez de acercarse, <b>se ha alejado de la meta</b>.</p><a href=\"#\">Fuente del último dato</a></div>",
+      "css": ".ds-ficha { background: var(--blue-deep, #23617f); color: #fff; padding: 30px; font: 300 15px/1.55 'IBM Plex Sans', system-ui, sans-serif; } .ds-ficha h3 { font: 400 24px/1 'Bebas Neue', 'Oswald', sans-serif; letter-spacing: .03em; margin: 0 0 10px; color: var(--yellow, #ffd300); text-transform: uppercase; } .ds-ficha dl { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 0 16px; border-top: 1px solid rgba(255,255,255,.22); } .ds-ficha dl div { padding: 10px 10px 10px 0; border-bottom: 1px solid rgba(255,255,255,.22); } .ds-ficha dt { font-size: 12px; color: var(--on-blue-2, #e3f0f6); } .ds-ficha dd { margin: 2px 0 0; font: 400 26px/1 'Bebas Neue', 'Oswald', sans-serif; } .ds-ficha p { color: var(--on-blue-2, #e3f0f6); margin: 0 0 12px; } .ds-ficha b { color: #fff; font-weight: 500; } .ds-ficha a { color: #fff; text-underline-offset: 3px; text-decoration-thickness: 1px; } .ds-ficha a:hover { text-decoration-thickness: 2px; } .ds-ficha a:focus-visible { outline: 3px solid var(--yellow, #ffd300); outline-offset: 2px; }"
+    },
+    {
+      "name": "Cover Top Bar",
+      "kind": "nav",
+      "refersTo": "chapter-panel",
+      "description": "Bebas wordmark with yellow 'España 2050' and white Plex links on steel blue.",
+      "html": "<nav class=\"ds-top\"><a class=\"ds-wordmark\" href=\"#\">Senda <span>España 2050</span></a><span class=\"ds-links\"><a href=\"#\">Desafíos</a><a href=\"#\">Cómo se calcula</a><a href=\"#\">Datos y código</a></span></nav>",
+      "css": ".ds-top { background: var(--blue, #4a8aa9); display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 24px; flex-wrap: wrap; } .ds-wordmark { font: 400 26px/1 'Bebas Neue', 'Oswald', sans-serif; letter-spacing: .06em; color: #fff; text-decoration: none; text-transform: uppercase; } .ds-wordmark span { color: var(--yellow, #ffd300); } .ds-links { display: flex; gap: 22px; } .ds-links a { color: #fff; text-decoration: none; font: 400 15px 'IBM Plex Sans', system-ui, sans-serif; } .ds-links a:hover { text-decoration: underline; } .ds-top a:focus-visible { outline: 3px solid var(--yellow, #ffd300); outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Report Reads the Future",
+    "overview": "The site is the 2021 España 2050 report translated to screen: full-bleed steel-blue fields, white sheets laid on a pale blue page, Bebas Neue capitals for every headline and figure, IBM Plex Sans Light for the reading voice. Its job is foresight, not scoring. Each indicator is a line from 2019 toward 2030, 2040 and 2050, with the yellow senda showing where the country should be and the real trajectory extended to answer \"a este ritmo, ¿cuándo llegamos?\".\n\nDensity is that of a printed indicator table: tight rows, small labels, big condensed numerals, and generous blue chapter panels that set the pace between desafíos. The cover carries an original isometric maze (generated, seeded, in cyan, steel and graphite) clipped on a diagonal, with a single yellow bar crossing the field as the senda. Depth is almost entirely tonal (blue field, white sheet, deep-blue lámina); the system is flat and square.\n\nThe world rejects the KPI-tile dashboard: indicators live as rows in a cuadro and open into a deep-blue ficha with a prospective chart, never as floating cards.",
+    "keyCharacteristics": [
+      "Full-bleed steel-blue cover and chapter panels; white sheets with a steel-blue corner bracket.",
+      "Bebas Neue capitals for headlines, giant chapter numerals and all headline figures; Plex Sans 300 body.",
+      "Signal yellow marks the senda, the 2030 destination and the active/focused thing.",
+      "Five fixed status colors, always paired with a distinct icon shape and a label or count.",
+      "Square, flat surfaces; radius only on small interactive tokens.",
+      "Every figure carries its year and source in small Plex beneath it."
+    ],
+    "rules": [
+      { "name": "The Signal Yellow Rule", "body": "Yellow means \"the senda, the destination, or the thing you are on\": the path, the 2030 emphasis, the active cell, focus and selection. It is never a fill for panels, never a status color, never decoration.", "section": "colors" },
+      { "name": "The Five Statuses Rule", "body": "The five status colors are a closed scale used only for status (map cells, icons, progress bars). Every status mark pairs color with its icon shape and a label or count; color alone never carries meaning.", "section": "colors" },
+      { "name": "The Dark Mirror Rule", "body": "Dark mode keeps the blue fields and swaps the sheets to graphite tones (paper #3c3c3b on page #323231), lightens blue-ink and lifts the status scale; it is a full token remap, toggled by prefers-color-scheme or data-theme.", "section": "colors" },
+      { "name": "The Bebas Figures Rule", "body": "Every headline number is Bebas: values, targets, years of arrival, numerals. Units sit beside it in small Plex 400 (13px), and the year/source sits beneath it in 12px Plex muted. Only \"%\" stays glued to the number.", "section": "typography" },
+      { "name": "The Light Voice Rule", "body": "Running text is Plex Sans 300; emphasis steps to 500, not to a second face or italic.", "section": "typography" },
+      { "name": "The Flat Sheet Rule", "body": "Panels, sheets, rows, chips and cards never cast shadows. A surface separates by color and hairline, or it does not separate.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do lay the steel blue (#4a8aa9) edge to edge for the cover and every chapter; put detail on white sheets at 1240px with the 7px corner bracket.",
+      "Do set every headline figure in Bebas with its unit in small Plex and its year and source beneath it.",
+      "Do keep yellow (#ffd300) for the senda, the 2030 destination, the active cell and focus.",
+      "Do pair every status color with its icon shape and a label or count, including on mobile where labels become visually hidden text.",
+      "Do open indicator detail into the deep-blue ficha with the prospective chart: senda in yellow, reality in white, extension dotted.",
+      "Do remap all tokens for dark mode rather than overriding components one by one."
+    ],
+    "donts": [
+      "Don't render indicators as separate KPI tiles or cards; they are rows in a cuadro.",
+      "Don't use yellow as a status color, a panel fill or decoration.",
+      "Don't add shadows to sheets, rows, chips or panels; only the sticky guide and tooltip float.",
+      "Don't round sheets, bands or panels; radius belongs to cells, flags, tooltip and pills only.",
+      "Don't italicize display type; emphasis in Bebas is a color change.",
+      "Don't use the Government of Spain coat of arms, ministry or ONPE logos, or the official \"ESPAÑA 2050\" logotype; the maze is the project's own generated illustration."
+    ]
+  }
+}

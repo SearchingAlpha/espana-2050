@@ -1,0 +1,13 @@
+---
+import type { Estado } from "../lib/e2050";
+interface Props { estado: Estado; size?: number }
+const { estado, size = 18 } = Astro.props;
+---
+<svg class={`sicon s-${estado}`} width={size} height={size} viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+  <circle cx="10" cy="10" r="10" class="sicon-bg" />
+  {estado === "enlinea" && <path d="M5.6 10.4l3 3 5.8-6.4" class="sicon-mark" />}
+  {estado === "senda" && <path d="M6.5 13.5l7-7M8.2 6.5h5.3v5.3" class="sicon-mark" />}
+  {estado === "lento" && <path d="M5.5 10h9M11 6.5l3.5 3.5-3.5 3.5" class="sicon-mark" />}
+  {estado === "retroceso" && <path d="M10 5.5v9M6.5 11l3.5 3.5 3.5-3.5" class="sicon-mark" />}
+  {estado === "nodata" && <path d="M6 10h8" class="sicon-mark" />}
+</svg>

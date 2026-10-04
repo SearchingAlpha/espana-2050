@@ -1,0 +1,313 @@
+---
+import "@fontsource/bebas-neue/400.css";
+import "@fontsource/ibm-plex-sans/300.css";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/500.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "../styles/global.css";
+import StatusIcon from "../components/StatusIcon.astro";
+import Prospectiva from "../components/Prospectiva.astro";
+import { DESAFIOS, FILAS, ESTADOS, ORDEN, estadoPorId, num, unidad, valorActual, ritmo, type Estado } from "../lib/e2050";
+
+const REPO = "https://github.com/SearchingAlpha/espana-2050";
+const INFORME = "https://www.lamoncloa.gob.es/presidente/actividades/Documents/2021/200521-Estrategia_Espana_2050.pdf";
+
+const est = estadoPorId();
+const ids = Object.keys(est).map(Number);
+const total = ids.length;
+const cuenta = (s: Estado, lista = ids) => lista.filter((i) => est[i] === s).length;
+const buenos = cuenta("enlinea") + cuenta("senda");
+
+const desafios = Object.entries(DESAFIOS).map(([d, titulo]) => {
+  const filas = FILAS.filter((f) => String(f.desafio) === d);
+  const idsD = [...new Set(filas.map((f) => f.id))];
+  const conProg = filas.filter((f) => f.prog != null);
+  const mejor = conProg.reduce((a, b) => ((b.prog as number) > (a.prog as number) ? b : a), conProg[0]);
+  const peor = conProg.reduce((a, b) => ((b.prog as number) < (a.prog as number) ? b : a), conProg[0]);
+  return { d, titulo, filas, idsD, mejor, peor };
+});
+
+const DMIN = -1, DMAX = 1.5;
+const pct = (p: number) => ((Math.max(DMIN, Math.min(DMAX, p)) - DMIN) / (DMAX - DMIN)) * 100;
+const slug = (f: (typeof FILAS)[number]) => `i-${f.id}${f.sub ? "-" + f.sub.normalize("NFD").replace(/[^\w]+/g, "").toLowerCase() : ""}`;
+const COMP: Record<string, string> = { proxy: "Dato aproximado", distinta: "Otra fuente" };
+const fuente = (u: unknown) => (u ? String(u).split(" ")[0] : null);
+const nombreCorto = (f: (typeof FILAS)[number]) => f.nombre + (f.sub ? ` · ${f.sub}` : "");
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Senda España 2050</title>
+  <meta name="description" content="Seguimiento independiente de los 50 objetivos del informe España 2050: el último dato oficial de cada indicador frente a la senda hacia sus metas de 2030." />
+  <meta property="og:title" content="Senda España 2050" />
+  <meta property="og:description" content={`${buenos} de ${total} objetivos de España 2050 van al ritmo previsto o ya están en el nivel de 2030.`} />
+  <meta name="theme-color" content="#4a8aa9" />
+  <link rel="icon" href={`${import.meta.env.BASE_URL}/favicon.svg`.replace("//", "/")} type="image/svg+xml" />
+</head>
+<body>
+  <header class="cover">
+    <div class="wrap topbar">
+      <a class="wordmark" href="#top" id="top">Senda <span>España 2050</span></a>
+      <nav class="topnav" aria-label="Secciones">
+        <a href="#desafio-1">Desafíos</a>
+        <a href="#metodo">Cómo se calcula</a>
+        <a href={REPO}>Datos y código</a>
+      </nav>
+    </div>
+    <div class="cover-maze" aria-hidden="true"></div>
+    <div class="wrap cover-grid">
+      <div>
+        <h1>¿Llega España <em>a 2030?</em></h1>
+        <p class="verdict"><b>{buenos} de los {total} objetivos</b> de España 2050 van al ritmo previsto o ya están en el nivel fijado para 2030. Los otros {total - buenos} van tarde o retroceden.</p>
+        <p class="cover-meta">Último dato oficial de cada indicador · actualizado en octubre de 2026</p>
+      </div>
+      <section class="mapa" aria-labelledby="mapa-t">
+        <h2 id="mapa-t">Los 50 objetivos</h2>
+        <p class="mapa-sub">Cada casilla es un objetivo, agrupado por desafío. Pulsa una para abrir su ficha.</p>
+        <div class="mapa-rows">
+          {desafios.map(({ d, idsD, titulo }) => (
+            <div class="mapa-row">
+              <a class="d" href={`#desafio-${d}`} aria-label={`Desafío ${d}: ${titulo}`}>{d}</a>
+              <div class="cells">
+                {idsD.map((id) => {
+                  const f = FILAS.find((x) => x.id === id)!;
+                  return (
+                    <button class={`cell s-${est[id]}`} type="button" data-id={id} data-estado={est[id]} data-target={slug(f)}
+                      data-name={f.nombre} aria-label={`${id}. ${f.nombre}: ${ESTADOS[est[id]].label}`}>{id}</button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="legend" role="group" aria-label="Filtrar por estado">
+          {ORDEN.map((s) => (
+            <button class="chip" type="button" data-filter={s} aria-pressed="false">
+              <StatusIcon estado={s} />{ESTADOS[s].label}<span class="n">{cuenta(s)}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <div class="guide" id="guide">
+    <div class="wrap guide-in">
+      <p class="guide-words" id="guideWords" aria-live="off">Desafío 1 <span>· Objetivos 1–6</span></p>
+      <div class="filters" role="group" aria-label="Filtrar por estado">
+        {ORDEN.map((s) => (
+          <button class="chip" type="button" data-filter={s} aria-pressed="false">
+            <StatusIcon estado={s} size={16} /><span class="lbl">{ESTADOS[s].short}</span><span class="n">{cuenta(s)}</span>
+          </button>
+        ))}
+        <button class="clear" type="button" id="clear" hidden>Ver todos</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    {desafios.map(({ d, titulo, filas, idsD, mejor, peor }) => (
+      <section class="desafio" id={`desafio-${d}`} data-desafio={d} data-range={`${idsD[0]}–${idsD[idsD.length - 1]}`} aria-labelledby={`dt-${d}`}>
+        <header class="chapter"><div class="wrap chapter-in">
+          <span class="numeral" aria-hidden="true">{d}</span>
+          <div>
+            <h2 id={`dt-${d}`}><span class="sr-only">Desafío {d}: </span>{titulo}</h2>
+            <ul class="counts">
+              {ORDEN.filter((s) => cuenta(s, idsD)).map((s) => (
+                <li><StatusIcon estado={s} size={16} />{cuenta(s, idsD)} {ESTADOS[s].short.toLowerCase()}</li>
+              ))}
+            </ul>
+          </div>
+          {mejor && peor && mejor !== peor && (
+            <p class="hl">Avanza más: <b>{nombreCorto(mejor)}</b>. Va peor: <b>{nombreCorto(peor)}</b>.</p>
+          )}
+        </div></header>
+        <div class="cuadro bracket">
+          <div class="cuadro-head" aria-hidden="true">
+            <span></span><span>Indicador</span><span>Hoy</span><span>Meta 2030</span><span>Progreso hacia 2030 (la marca amarilla es la senda)</span><span>Estado</span><span>A este ritmo, meta 2030</span><span></span>
+          </div>
+          {filas.map((f) => {
+            const v = valorActual(f);
+            const r = ritmo(f, "llega2030");
+            const r50 = ritmo(f, "llega2050");
+            const p = f.prog as number;
+            const z = pct(0), full = pct(1), pp = pct(p);
+            const u = unidad(f.unidad);
+            const late = r.big === "No llega" || (/^\d{4}$/.test(r.big) && +r.big > 2030) || r.big === "+2100";
+            return (
+              <details class="ind" id={slug(f)} data-id={f.id} data-estado={est[f.id]}>
+                <summary class="ind-sum">
+                  <span class="ind-n" aria-hidden="true">{f.id}</span>
+                  <span class="ind-name">
+                    <span class="sr-only">Objetivo {f.id}: </span>{f.nombre}
+                    {f.sub && <span class="sub">{f.sub}</span>}
+                    {COMP[f.comp as string] && <span class="flag">{COMP[f.comp as string]}</span>}
+                    {f.ajustado != null && <span class="flag">Reescalado a la base</span>}
+                  </span>
+                  <span class="cell-hoy">
+                    <span class="hoy num">{num(v)}{f.unidad === "%" ? "%" : ""}{f.unidad && f.unidad !== "%" && <span class="u">{f.unidad}</span>}<small>{f.anio} · partía de {num(f.base as number)}</small></span>
+                    <span class="m-meta">Meta 2030: {num(f.meta2030 as number)}</span>
+                  </span>
+                  <span class="meta cell-meta num">{num(f.meta2030 as number)}{f.unidad === "%" ? "%" : ""}<small>en 2050: {num(f.meta2050 as number)}</small></span>
+                  <span class="pista" aria-hidden="true">
+                    <span class="rail" style={`left:${z}%;width:${full - z}%`}></span>
+                    <span class="tick" style={`left:${z}%`}></span>
+                    <span class="tick" style={`left:${full}%`}></span>
+                    {p >= 0
+                      ? <span class={`bar s-${f.estado}`} style={`left:${z}%;width:${pp - z}%`}></span>
+                      : <span class={`bar s-${f.estado}`} style={`left:${pp}%;width:${z - pp}%`}></span>}
+                    <span class="esp" style={`left:${pct((f.esp as number) ?? 0)}%`}></span>
+                    {p > DMAX && <span class="over" style="right:0">{Math.round(p * 100)}%</span>}
+                    {p < DMIN && <span class="over" style="left:0">{Math.round(p * 100)}%</span>}
+                  </span>
+                  <span class="estado"><StatusIcon estado={f.estado as Estado} />{ESTADOS[f.estado as Estado].label}</span>
+                  <span class={`ritmo num${late ? " is-late" : ""}`}>{r.big}<small>{r.small}</small></span>
+                  <svg class="chev" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 2.5L9.5 7 5 11.5" /></svg>
+                </summary>
+                <div class="ficha">
+                  <Prospectiva f={f} />
+                  <div>
+                    <h3>{ESTADOS[f.estado as Estado].label}</h3>
+                    <dl class="num">
+                      <div><dt>Punto de partida</dt><dd>{num(f.base as number)}</dd></div>
+                      <div><dt>Hoy ({f.anio})</dt><dd>{num(v)}</dd></div>
+                      <div><dt>Meta 2030</dt><dd>{num(f.meta2030 as number)}</dd></div>
+                      <div><dt>Meta 2050</dt><dd>{num(f.meta2050 as number)}</dd></div>
+                    </dl>
+                    {f.prog != null && (
+                      <p>{p >= 0
+                        ? <>Ha recorrido <b>el {Math.round(p * 100)}% del camino</b> hacia la meta de 2030.</>
+                        : <>En vez de acercarse, <b>se ha alejado de la meta</b>: el retroceso equivale al {Math.round(-p * 100)}% del camino que había que recorrer hasta 2030.</>}
+                        {" "}Siguiendo la senda, a estas alturas tocaría haber recorrido el {Math.round(((f.esp as number) ?? 0) * 100)}%.</p>
+                    )}
+                    <p>A este ritmo, la meta de 2030 se alcanzaría: <b>{r.big === "Ya" ? "ya está en ese nivel" : r.big === "No llega" ? "nunca, porque la tendencia va en contra" : `en ${r.big} (${r.small})`}</b>. La de 2050: <b>{r50.big === "Ya" ? "ya está en ese nivel" : r50.big === "No llega" ? "nunca" : `en ${r50.big} (${r50.small})`}</b>.</p>
+                    {f.ajustado != null && <p>En la serie estadística actual el valor es {num(f.valor as number)}{u}. Se muestra reescalado a la base del informe para poder compararlo.</p>}
+                    {f.nota && <p class="nota"><b>Nota técnica.</b> {f.nota}</p>}
+                    {fuente(f.fuente) && <p><a href={fuente(f.fuente)!} rel="noopener">Fuente del último dato</a></p>}
+                    {(f.alt ?? []).map((a: any) => (
+                      <p class="alt">Dato alternativo{a.etiqueta ? ` (${String(a.etiqueta).replace(/_/g, " ")})` : ""}: <b>{num(a.valor)}{u}</b> en {a.anio}. {a.nota} {fuente(a.fuente) && <a href={fuente(a.fuente)!} rel="noopener">Fuente</a>}</p>
+                    ))}
+                  </div>
+                </div>
+              </details>
+            );
+          })}
+        </div>
+      </section>
+    ))}
+
+    <section class="metodo bracket" id="metodo" aria-labelledby="metodo-t">
+      <h2 id="metodo-t">Cómo se calcula</h2>
+      <div class="metodo-grid">
+        <div>
+          <p class="formula">Progreso = (hoy − punto de partida) ÷ (meta 2030 − punto de partida)</p>
+          <ul>
+            <li>0% es el punto de partida del informe y 100% la meta de 2030. Funciona igual cuando la meta es bajar, como en el paro o las emisiones.</li>
+            <li><b>La senda</b> es una línea recta desde el punto de partida, que tomamos en 2019, hasta la meta de 2030. Un dato de 2025 debería ir por el 55% del camino; uno de 2024, por el 45%. En cada fila, la marca amarilla señala ese punto.</li>
+            <li><b>Meta 2030 en línea</b> significa que el indicador ya está en el nivel fijado para 2030. No es un objetivo cumplido: hay que mantenerlo y seguir hacia 2040 y 2050.</li>
+            <li><b>A este ritmo</b> prolonga en línea recta la evolución entre el punto de partida y el último dato. Es una extrapolación sencilla, no una previsión.</li>
+            <li>Los objetivos con varias partes (PISA por materia, empresas por tamaño, actividad por edad) cuentan una vez en el resumen, con el estado de la mayoría de sus partes.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Lo que conviene tener en cuenta</h3>
+          <ul>
+            <li>Algunas metas eran poco ambiciosas. La tasa de actividad de 55 a 64 años partía del 62% y su meta para 2030 era el 63%.</li>
+            <li>Unos ocho indicadores usan un dato aproximado o de otra fuente porque la serie original se revisó o dejó de publicarse. Van marcados en su fila.</li>
+            <li>Los datos son de años distintos, de 2022 a 2026. La COVID distorsiona 2020 y 2021.</li>
+            <li>Esta página mide cómo evoluciona el país, no el efecto del informe España 2050.</li>
+          </ul>
+          <h3 style="margin-top:22px">Fuentes</h3>
+          <p>Objetivos y metas: <a href={INFORME}>España 2050. Fundamentos y propuestas para una Estrategia Nacional de Largo Plazo</a> (2021), cuadro de indicadores, págs. 44-47. Últimos datos: Eurostat, INE, OCDE (incluido PISA 2025), MITECO, Red Eléctrica, IMSERSO, FUNDAE, Ministerio de Vivienda y Eurobarómetro. Cada ficha enlaza su fuente.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="wrap pie-grid">
+      <div>
+        <span class="wordmark">Senda <span>España 2050</span></span>
+        <p>Proyecto independiente y sin ánimo de lucro. No está afiliado al Gobierno de España ni a la Oficina Nacional de Prospectiva y Estrategia, autora del informe original.</p>
+      </div>
+      <div>
+        <p>Datos recogidos el 4 de octubre de 2026. ¿Has visto un error o un dato más reciente? <a href={`${REPO}/issues`}>Avísanos en GitHub</a>.</p>
+        <p><a href={REPO}>Código y datos abiertos</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="tip" id="tip" role="tooltip" hidden></div>
+
+  <script>
+    const $$ = <T extends Element>(s: string) => Array.from(document.querySelectorAll<T>(s));
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // filtro por estado
+    let filtro: string | null = null;
+    function aplicar() {
+      $$<HTMLButtonElement>("[data-filter]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === filtro)));
+      $$<HTMLElement>(".cell").forEach((c) => c.classList.toggle("is-dim", !!filtro && c.dataset.estado !== filtro));
+      $$<HTMLElement>(".ind").forEach((r) => (r.hidden = !!filtro && r.dataset.estado !== filtro));
+      $$<HTMLElement>(".desafio").forEach((s) => (s.hidden = !s.querySelector(".ind:not([hidden])")));
+      document.getElementById("clear")!.hidden = !filtro;
+      try { sessionStorage.setItem("e2050-filtro", filtro ?? ""); } catch {}
+    }
+    $$<HTMLButtonElement>("[data-filter]").forEach((b) =>
+      b.addEventListener("click", () => { filtro = filtro === b.dataset.filter ? null : b.dataset.filter!; aplicar(); })
+    );
+    document.getElementById("clear")!.addEventListener("click", () => { filtro = null; aplicar(); });
+    try { filtro = sessionStorage.getItem("e2050-filtro") || null; } catch {}
+    if (filtro) aplicar();
+
+    // mapa: tooltip y salto a la ficha
+    const tip = document.getElementById("tip")!;
+    function abrir(id: string, focus = true, smooth = true) {
+      const row = document.getElementById(id) as HTMLDetailsElement | null;
+      if (!row) return;
+      if (row.hidden) { filtro = null; aplicar(); }
+      row.open = true;
+      $$(".cell").forEach((c) => c.classList.remove("is-active"));
+      document.querySelector(`.cell[data-target="${id}"]`)?.classList.add("is-active");
+      row.scrollIntoView({ behavior: reduce || !smooth ? "auto" : "smooth", block: "start" });
+      if (focus) row.querySelector("summary")?.focus({ preventScroll: true });
+      history.replaceState(null, "", `#${id}`);
+    }
+    $$<HTMLButtonElement>(".cell").forEach((c) => {
+      c.addEventListener("click", () => abrir(c.dataset.target!));
+      const show = () => {
+        const s = c.closest(".mapa")!.querySelector<HTMLElement>(`.chip[data-filter="${c.dataset.estado}"]`)!.textContent!.replace(/\d+$/, "");
+        tip.innerHTML = `<b>${c.dataset.id}. ${c.dataset.name}</b><br>${s}`;
+        tip.hidden = false;
+        const r = c.getBoundingClientRect(), t = tip.getBoundingClientRect();
+        tip.style.left = Math.max(8, Math.min(innerWidth - t.width - 8, r.left + r.width / 2 - t.width / 2)) + "px";
+        tip.style.top = (r.top - t.height - 10 < 8 ? r.bottom + 10 : r.top - t.height - 10) + "px";
+      };
+      c.addEventListener("mouseenter", show);
+      c.addEventListener("focus", show);
+      c.addEventListener("mouseleave", () => (tip.hidden = true));
+      c.addEventListener("blur", () => (tip.hidden = true));
+    });
+    if (location.hash.startsWith("#i-")) abrir(location.hash.slice(1), false, false);
+
+    // palabras guía: desafío y objetivos a la vista
+    const words = document.getElementById("guideWords")!;
+    const titles: Record<string, string> = {};
+    $$<HTMLElement>(".desafio").forEach((s) => (titles[s.dataset.desafio!] = s.querySelector("h2")!.textContent!.replace(/^Desafío \d+: /, "")));
+    const visibles = new Set<HTMLElement>();
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => (e.isIntersecting ? visibles.add(e.target as HTMLElement) : visibles.delete(e.target as HTMLElement)));
+      const rows = [...visibles].filter((r) => !r.hidden).sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+      if (!rows.length) return;
+      const first = rows[0], last = rows[rows.length - 1];
+      const d = first.closest<HTMLElement>(".desafio")!.dataset.desafio!;
+      const a = first.dataset.id, b = last.closest<HTMLElement>(".desafio")!.dataset.desafio === d ? last.dataset.id : first.closest<HTMLElement>(".desafio")!.dataset.range!.split("–")[1];
+      words.innerHTML = `Desafío ${d} <span>· ${a === b ? "Objetivo " + a : "Objetivos " + a + "–" + b}</span>`;
+      words.title = titles[d];
+    }, { rootMargin: "-70px 0px -35% 0px" });
+    $$<HTMLElement>(".ind").forEach((r) => io.observe(r));
+  </script>
+</body>
+</html>

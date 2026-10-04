@@ -1,0 +1,80 @@
+---
+// Gráfico de prospectiva: senda del informe (amarilla) frente a la evolución real y su prolongación.
+import { num, unidad, valorActual, type Fila } from "../lib/e2050";
+interface Props { f: Fila }
+const { f } = Astro.props;
+
+const W = 560, H = 250, L = 52, R = 22, T = 26, B = 30;
+const v = valorActual(f);
+const y0 = 2019, yr = f.anio_n ?? 2025;
+const metas: [number, number][] = [[2030, f.meta2030 as number]];
+if (f.meta2040 != null) metas.push([2040, f.meta2040 as number]);
+if (f.meta2050 != null) metas.push([2050, f.meta2050 as number]);
+const senda: [number, number][] = [[y0, f.base as number], ...metas];
+
+// prolongación lineal de la evolución real hasta 2050
+const rate = yr > y0 ? (v - (f.base as number)) / (yr - y0) : 0;
+const proy = (t: number) => (f.base as number) + rate * (t - y0);
+
+const vals = [...senda.map((p) => p[1]), v];
+let lo = Math.min(...vals), hi = Math.max(...vals);
+const span = hi - lo || Math.abs(hi) || 1;
+lo -= span * 0.14; hi += span * 0.14;
+
+const x = (t: number) => L + ((t - y0) / (2050 - y0)) * (W - L - R);
+const y = (val: number) => T + (1 - (val - lo) / (hi - lo)) * (H - T - B);
+
+// ticks limpios
+const step = (() => {
+  const raw = (hi - lo) / 4, p = Math.pow(10, Math.floor(Math.log10(raw)));
+  const n = raw / p;
+  return (n < 1.5 ? 1 : n < 3 ? 2 : n < 7 ? 5 : 10) * p;
+})();
+const ticks: number[] = [];
+for (let t = Math.ceil(lo / step) * step; t <= hi; t += step) ticks.push(+t.toFixed(6));
+
+const pts = (a: [number, number][]) => a.map(([t, val], i) => `${i ? "L" : "M"}${x(t).toFixed(1)} ${y(val).toFixed(1)}`).join(" ");
+const realPath = `M${x(y0)} ${y(f.base as number)} L${x(yr)} ${y(v)}`;
+const proyPath = `M${x(yr)} ${y(v)} L${x(2050)} ${y(proy(2050))}`;
+const id = `c${f.id}-${(f.sub ?? "").replace(/\W+/g, "")}`;
+const labelAbove = y(v) > T + 22;
+const u = unidad(f.unidad);
+---
+<figure class="pros">
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-labelledby={`${id}-t`}>
+    <title id={`${id}-t`}>{`${f.nombre}${f.sub ? " (" + f.sub + ")" : ""}: de ${num(f.base as number)} en el punto de partida a ${num(v)}${u} en ${yr}. Meta 2030: ${num(f.meta2030 as number)}.`}</title>
+    <defs>
+      <clipPath id={`${id}-clip`}><rect x={L} y={T} width={W - L - R} height={H - T - B} /></clipPath>
+    </defs>
+    {ticks.map((t) => (
+      <g>
+        <line class="pros-grid" x1={L} x2={W - R} y1={y(t)} y2={y(t)} />
+        <text class="pros-tick" x={L - 8} y={y(t) + 4} text-anchor="end">{num(t)}</text>
+      </g>
+    ))}
+    {[2019, 2030, 2040, 2050].map((t) => (
+      <text class="pros-year" x={x(t)} y={H - 8} text-anchor="middle">{t}</text>
+    ))}
+    <line class="pros-now" x1={x(2026)} x2={x(2026)} y1={T} y2={H - B} />
+    <text class="pros-nowlab" x={x(2026)} y={H - 8} text-anchor="middle">hoy</text>
+    <g clip-path={`url(#${id}-clip)`}>
+      <path class="pros-senda" d={pts(senda)} />
+      <path class="pros-proy" d={proyPath} />
+      <path class="pros-real" d={realPath} pathLength="1" />
+    </g>
+    {metas.map(([t, val]) => (
+      <g>
+        <circle class="pros-meta" cx={x(t)} cy={y(val)} r="5.5" />
+        <text class="pros-metalab" x={x(t)} y={y(val) + (y(val) > H - B - 24 ? -12 : 20)} text-anchor="middle">{num(val)}</text>
+      </g>
+    ))}
+    <circle class="pros-base" cx={x(y0)} cy={y(f.base as number)} r="4" />
+    <circle class="pros-dot" cx={x(yr)} cy={y(v)} r="6" />
+    <text class="pros-val" x={x(yr) + 10} y={y(v) + (labelAbove ? -10 : 18)}>{`${num(v)}${u}`}</text>
+  </svg>
+  <figcaption class="pros-key">
+    <span><i class="k-senda"></i>Senda y metas del informe</span>
+    <span><i class="k-real"></i>Evolución real</span>
+    <span><i class="k-proy"></i>A este ritmo</span>
+  </figcaption>
+</figure>

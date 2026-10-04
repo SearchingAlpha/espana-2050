@@ -1,0 +1,122 @@
+[
+ {
+  "id": 28,
+  "sub": "55-64",
+  "indicador": "Tasa de actividad 55-64 años",
+  "base": 62,
+  "meta2030": 63,
+  "ultimo_valor": 69.4,
+  "anio_dato": 2025,
+  "fuente_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/lfsa_argan?geo=ES&sex=T&citizen=TOTAL&unit=PC&age=Y55-64",
+  "comparabilidad": "proxy",
+  "nota": "Nota 46 usa OCDE LFS by sex and age; Eurostat (EPA) da 62,5% en 2020, coherente con la base 62%*. Meta 2030 ya superada desde 2021 (64,4)."
+ },
+ {
+  "id": 28,
+  "sub": "65-74",
+  "indicador": "Tasa de actividad 65-74 años",
+  "base": 5,
+  "meta2030": 7,
+  "ultimo_valor": 8.2,
+  "anio_dato": 2025,
+  "fuente_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/lfsa_argan?geo=ES&sex=T&citizen=TOTAL&unit=PC&age=Y65-74",
+  "comparabilidad": "proxy",
+  "nota": "Eurostat en vez de OCDE; 2020=5,2 (coherente con base 5%*). 2024=7,0; 2025=8,2: meta superada."
+ },
+ {
+  "id": 29,
+  "sub": null,
+  "indicador": "Gasto público en salud (% PIB) sin cuidados de larga duración",
+  "base": 5.7,
+  "meta2030": 7.0,
+  "ultimo_valor": 6.0,
+  "anio_dato": 2024,
+  "fuente_url": "https://sdmx.oecd.org/public/rest/data/OECD.ELS.HD,DSD_SHA@DF_SHA,/ESP.A.EXP_HEALTH.PT_B1GQ.........?startPeriod=2015&format=csvfilewithlabels",
+  "comparabilidad": "exacta",
+  "nota": "OCDE SHA, esquemas HF1 (públicos/obligatorios): gasto corriente total 6,68% menos HC3 (LTC sanitario) 0,72% = 5,96%. Misma fuente que nota 47 (OCDE). Con esta misma serie 2015-19 sale 5,65%. Pico 2020 6,97 (COVID). Estimación OCDE 2025 total HF1 6,54% (sin desglose HC3)."
+ },
+ {
+  "id": 30,
+  "sub": null,
+  "indicador": "Gasto público en cuidados de larga duración (% PIB)",
+  "base": 0.8,
+  "meta2030": 1.5,
+  "ultimo_valor": 0.8,
+  "anio_dato": 2024,
+  "fuente_url": "https://sdmx.oecd.org/public/rest/data/OECD.ELS.HD,DSD_SHA@DF_SHA,/ESP.A.EXP_HEALTH.PT_B1GQ.........?startPeriod=2015&format=csvfilewithlabels",
+  "comparabilidad": "exacta",
+  "nota": "OCDE SHA HF1: HC3 (LTC sanitario) 0,719 + HCR1 (LTC social) 0,068 = 0,787% PIB. Media 2015-18 con misma serie = 0,745 (base redondeada 0,8). Prácticamente estancado. Eurostat hlth_sha11_hchf HC3 HF1 2024 = 0,72."
+ },
+ {
+  "id": 31,
+  "sub": null,
+  "indicador": "% personas con derecho reconocido a prestación SAAD que no la perciben (limbo)",
+  "base": 17,
+  "meta2030": 0,
+  "ultimo_valor": 6.0,
+  "anio_dato": 2026,
+  "fuente_url": "https://imserso.es/documents/20123/11151734/estsisaad_20260831.xlsx/f31848ff-dced-b021-91cf-395c74c7bdb0",
+  "comparabilidad": "exacta",
+  "nota": "IMSERSO SISAAD a 31/08/2026: lista de espera (derecho sin prestación) 113.724 / personas beneficiarias con derecho 1.881.910 = 6,04%. Dic-2025: 107.327/1.784.369 = 6,01%. Dic-2020 = 17,1% (replica base). No incluye la espera de valoración de grado (~110.000 personas más)."
+ },
+ {
+  "id": 32,
+  "sub": null,
+  "indicador": "% población con sobrecarga financiera por coste de vivienda (>40% renta disponible)",
+  "base": 9.5,
+  "meta2030": 8.0,
+  "ultimo_valor": 7.2,
+  "anio_dato": 2025,
+  "fuente_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_lvho07c?geo=ES&tenure=TOTAL&unit=PC",
+  "comparabilidad": "exacta",
+  "nota": "Eurostat EU-SILC (ECV 2025), total población. Media 2015-19 de la misma serie = 9,5 (replica base). 2024=7,8. Meta 2030 ya alcanzada."
+ },
+ {
+  "id": 33,
+  "sub": null,
+  "indicador": "Viviendas rehabilitadas al año (% del parque total)",
+  "base": 0.1,
+  "meta2030": 1.5,
+  "ultimo_valor": 0.09,
+  "anio_dato": 2025,
+  "fuente_url": "https://apps.fomento.gob.es/BoletinOnline/sedal/09010600.XLS",
+  "comparabilidad": "exacta",
+  "nota": "Misma metodología nota 52: viviendas a reformar/restaurar en visados de dirección de obra 2025 = 24.384 / parque estimado MIVAU 2025 = 27.099.556 (https://www.infobae.com/espana/2026/06/18/espana-suma-casi-95000-viviendas-en-un-ano-pero-aun-mantiene-452670-casas-nuevas-sin-vender/) = 0,090%. 2024: 23.949. Muy lejos de la meta (requeriría ~400.000/año). Visados infraestiman rehabilitaciones menores sin dirección de obra."
+ },
+ {
+  "id": 34,
+  "sub": null,
+  "indicador": "Residuos municipales enviados a vertedero (% del generado)",
+  "base": 55,
+  "meta2030": 10,
+  "ultimo_valor": 47.4,
+  "anio_dato": 2024,
+  "fuente_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/env_wasmun?geo=ES&unit=KG_HAB&wst_oper=GEN&wst_oper=DSP_L_OTH",
+  "comparabilidad": "exacta",
+  "nota": "Eurostat env_wasmun: vertedero (DSP_L_OTH) 216 kg/hab / generados 456 kg/hab = 47,4%. Con datos revisados, la media 2015-19 sale 53,4% (base 55%). Progreso muy lento (~-1 pp/año)."
+ },
+ {
+  "id": 35,
+  "sub": null,
+  "indicador": "Población expuesta a PM2.5 > recomendación OMS (% total)",
+  "base": 51,
+  "meta2030": 25,
+  "ultimo_valor": 42.9,
+  "anio_dato": 2023,
+  "fuente_url": "https://www.eionet.europa.eu/etcs/etc-he/products/etc-he-products/etc-he-reports/etc-he-report-2025-5-air-quality-maps-of-eea-member-and-cooperating-countries-for-2023-pm10-pm2-5-o3-no2-nox-and-bap-spatial-estimates-and-their-uncertainties/@@download/file/etc-he-report-2025-5-horalek.pdf",
+  "comparabilidad": "exacta",
+  "nota": "Nota 55 usa umbral OMS 2005 (10 µg/m3), dato 2018, informes ETC. ETC HE 2025/5, tabla 2.3 (España sin Canarias): >10 µg/m3 = 42,9% en 2023 (comparable). Con la guía OMS 2021 (5 µg/m3) el expuesto sería 97,4%. Concentración ponderada por población 9,5 µg/m3. Mapas finales de 2024 aún no publicados (solo interinos)."
+ },
+ {
+  "id": 36,
+  "sub": null,
+  "indicador": "Pobreza energética: % población que no puede mantener la vivienda a temperatura adecuada",
+  "base": 7.5,
+  "meta2030": 6.0,
+  "ultimo_valor": 15.9,
+  "anio_dato": 2025,
+  "fuente_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_mdes01?geo=ES&hhcomp=TOTAL&rskpovth=TOTAL",
+  "comparabilidad": "exacta",
+  "nota": "Eurostat ilc_mdes01 (ECV 2025 INE). Base 7,5 = 2019. Serie: 2021 14,2; 2022 17,1; 2023 20,8; 2024 17,5; 2025 15,9. Más del doble de la base; se aleja de la meta."
+ }
+]
